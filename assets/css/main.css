@@ -2274,6 +2274,11 @@ input, select, textarea {
 			.button.primary:hover {
 				background-color: #18bfef;
 			}
+	
+	button.large.center{
+		position: absolute;
+		left: 50%;
+	}
 
 /* Form */
 
