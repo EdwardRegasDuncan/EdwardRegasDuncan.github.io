@@ -122,6 +122,21 @@ input, select, textarea {
 			-ms-transition: none !important;
 			transition: none !important;
 		}
+	
+	.center {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: auto;
+		margin-bottom: auto;
+		}
+	
+	img.standard {
+		width: 100%;
+		height: auto;
+	}
+
+
 
 /* Type */
 
@@ -2043,6 +2058,19 @@ input, select, textarea {
 							padding-top: 3rem;
 						}
 
+		}
+
+
+		.column {
+			float: left;
+			width: 50%;
+		}
+		
+		/* Clear floats after the columns */
+		.row:after {
+			content: "";
+			display: table;
+			clear: both;
 		}
 
 /* Box */

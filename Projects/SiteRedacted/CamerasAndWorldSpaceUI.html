@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>PROJECT</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="../../index.html" class="logo"><img src="../../images/myLogo.png"/></a>
+					</header>
+
+				<!-- Nav -->
+				<nav id="nav">
+					<ul class="links">
+						<li><a href="../../index.html">Portfolio</a></li>
+						<li><a href="../../Resume.html">Resume</a></li>
+						<li><a href="./SiteRedacted.html">SCP: Site [REDACTED]</a></li>
+						<li class="active"><a href="">Cameras and world-space UI</a></li>
+					</ul>
+					<ul class="icons">
+						<li><a href="https://github.com/EdwardRegasDuncan" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						<li><a href="https://www.linkedin.com/in/edward-regas-duncan/" target="_blank" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
+					</ul>
+				</nav>
+				
+				<!-- Main -->
+					<div id="main">
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<h1>Cameras and<br/> world-space UI</h1>
+								</header>
+								<p>
+									As the main interface which the player interacts with the game, the monitor acts as the HUD, Menu, and contains all the controls the player will need.<br/>
+									The Monitor itself is a 3d model with a World-Space UI positioned to take the place of a screen.
+								</p>
+
+								<img class="standard" src="./img/ScreenWorldSpaceUI.jpg"/>
+
+								<p>
+									Once the Canvas was in place I could add elements like I would for any UI, for the map of the facility I created a transparent image in 
+									<a href="https://www.photopea.com/" target="_blank">Photopea</a> the positioned UI buttons over each location where a camera would be placed
+								</p>
+								<p>
+									Before I could add the camera in, I needed something for them to render, so I did some more environmental design and set up all the rooms 
+									which would be rendered on the cameras.
+								</p>
+
+								<div class="row">
+									<div class="column">
+										<img class="standard" src="./img/SecurityScreenMapLayout.png" style="width: 100%;height:auto;"/>
+									</div>
+									<div class="column">
+										<img class="standard" src="./img/MapLayout.jpg" style="width: 100%;height:auto;"/>
+									</div>
+								</div>
+
+								<p>
+									Though it was not necessary to position each room based on their actual location as the player will never travel between them, i found that 
+									this helped to visualize the space and design the rooms accordingly, there are also less rooms than on the layout due to some rooms being 
+									designated as “Audio only” thus can be represented with a black screen
+								</p>
+
+								<p>
+									Once the rooms were finished, I created a camera object for each once and went about deciding how each room should appear on the screen.
+								</p>
+
+								<img class="standard" src="./img/CameraPositions.jpg" />
+
+								<p>
+									Instead of switching the main camera perspective to each room, I wanted the security camera’s perspective to render onto the monitor, 
+									to do this i needed to set up a Render Texture and tie it to a specific camera, In the end i created a render texture for each camera, 
+									enabling and disabling the layers depending which was active, an alternative method could have been to programmatically switch the target 
+									camera on the render texture but the current method works fine and has a minimal performance impact as the camera is not rendering anything when it is disabled
+								</p>
+								
+								<p>
+									Lastly I connected the buttons up to a SwitchActiveCamera(string camera) function that would disable all render textures then enable the one called by the button.
+								</p>
+
+								<img class="standard" src="./img/SiteREDACTEDRenderTextureTest.gif" />
+
+
+
+							</section>
+							
+
+					</div>
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+
+	</body>
+</html>
