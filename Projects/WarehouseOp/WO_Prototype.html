@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Prototype</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="../../assets/js/highlight/styles/atom-one-dark.min.css" />
+		<script src="../../assets/js/highlight/highlight.min.js"></script>
+		<script>hljs.highlightAll();</script>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="/index.html" class="logo"><img src="../../images/myLogo.png"/></a>
+					</header>
+
+				<!-- Nav -->
+				<nav id="nav">
+					<ul class="links">
+						<li><a href="../../index.html">Portfolio</a></li>
+						<li><a href="../../Resume.html">Resume</a></li>
+						<li><a href="./WO_index.html">Warehouse Operative</a></li>
+						<li class="active"><a href="">Prototype</a></li>
+					</ul>
+					<ul class="icons">
+						<li><a href="https://github.com/EdwardRegasDuncan" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						<li><a href="https://www.linkedin.com/in/edward-regas-duncan/" target="_blank" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
+					</ul>
+				</nav>
+				
+				<!-- Main -->
+					<div id="main">
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<h1>Prototype</h1>
+								</header>
+								
+								<p>
+									I started the same way I start every project: Create the player character, in this case this was a simple case of creating a cylinder, reducing the 
+									height until it resembled a coin then creating a movement script.
+									The movement script didn't need to be complicated, it only had to manage moving along the X and Z axis, there would be no need for a jump or sprint function.
+								</p>
+
+								<pre><code class="language-csharp">
+void Update()
+{
+	if (playerEnabled) { 
+		float horrizontalMovement = Input.GetAxis("Horizontal");
+		float verticalMovement = Input.GetAxis("Vertical");
+
+		directionOfMovement = new Vector3(horrizontalMovement, 0, verticalMovement) * _speed * Time.deltaTime;
+		transform.Translate(directionOfMovement);
+	}
+}
+								</code></pre>
+
+								<p>
+									Once that was complete it was time to create the pickup and drop actions, but before that I needed something to interact with.  I created a cube, gave it a 
+									Rigidbody then tagged it “Package”, all the pickup and drop logic would be handled by the player script so as long as an object had the “package” tag it would function the same.
+								</p>
+
+								<img class="standard" src="img/MovementTest.gif" />
+
+								<p>
+									For the interaction logic I renamed the player movement script to character controller and added a function that would detect an object near the player then child that GameObject 
+									to the player and move it into position.
+									At this point I only had one object to worry about so the point was manually positioned above the player model.
+								</p>
+
+							</section>
+
+					</div>
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+
+	</body>
+</html>
