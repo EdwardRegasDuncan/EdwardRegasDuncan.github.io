@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>PROJECT</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="../../assets/js/highlight/styles/atom-one-dark.min.css" />
+		<script src="../../assets/js/highlight/highlight.min.js"></script>
+		<script>hljs.highlightAll();</script>
+
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="../../index.html" class="logo"><img src="../../images/myLogo.png"/></a>
+					</header>
+
+				<!-- Nav -->
+				<nav id="nav">
+					<ul class="links">
+						<li><a href="../../index.html">Portfolio</a></li>
+						<li><a href="../../Resume.html">Resume</a></li>
+						<li><a href="./Flow.html">Project Flow</a></li>
+						<li class="active"><a href="">Setting up the player</a></li>
+					</ul>
+					<ul class="icons">
+						<li><a href="https://github.com/EdwardRegasDuncan" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						<li><a href="https://www.linkedin.com/in/edward-regas-duncan/" target="_blank" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
+					</ul>
+				</nav>
+				
+				<!-- Main -->
+					<div id="main">
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<h1>Setting up the player:</h1>
+								</header>
+
+								<p>
+									Flow is played in a 3D environment from a 3rd person perspective, as such it is important that both the player character 
+									is in full view and also as much of the environment as possible.
+								</p>
+
+								<p>
+									To begin I imported a mannequin from <a href="https://www.mixamo.com/" target="_blank">Mixamo</a> along with some starting 
+									animations such as forward jog left/right strafe, and backwards jog.
+								</p>
+
+								<img class="standard" src="img/FlowMannequin.jpg" />
+
+								<p>
+									I set up a PlayerCharacter object, added the mannequin model then created and assigned an animator.
+									Before setting up the animations, I wanted to add basic movement.  I created a Script called CharacterMovementController then wrote a simple movement script:
+								</p>
+
+								<pre><code class="language-csharp">
+private void Update()
+{
+	float horizontal = Input.GetAxis("Horizontal");
+	float vertical = Input.GetAxis("Vertical");
+	Vector3 direction = new Vector3(horizontal, 0, vertical).normalized;
+
+	if (direction.magnitude > 0.1f)
+	{
+		float targetDirection = cam.eulerAngles.y;
+		float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetDirection, ref turnSmoothVelocity, turnSmoothTime);
+		transform.rotation = Quaternion.Euler(0, angle, 0);
+		direction *= _speed * Time.deltaTime;
+		transform.Translate(direction);
+	}
+}
+							</code></pre>
+
+							<p>
+								With this I could now move my character around the environment.
+								For camera controls I turned to a reliable Unity package called <a href="https://unity.com/unity/features/editor/art-and-design/cinemachine">Cinemachine</a>, 
+								after importing and configuring a free-look camera, then adjusting my movement code to use the camera’s rotation as the forward direction, my basic character 
+								was complete now all that was left was some animations.
+							</p>
+
+							<p>
+								Opening the animator I created earlier I added  an idle state as the default then branched off to a jog blend tree.
+							</p>
+
+							<div class="row">
+								<div class="column">
+									<img class="standard" src="img/animationJog.jpg"/>
+								</div>
+								<div class="column">
+									<img class="standard" src="img/jogBlendTree.jpg" />
+								</div>
+							</div>
+
+							<p>
+								The job blend tree allowed me to make nice smooth directional movements using a limited number of key animations
+								Once the blend tree was complete I went back to my movement script again and linked the animation tree values to the PlayerCharacter velocity.
+							</p>
+
+							<img class="standard" src="img/MovementTest.gif" />
+
+							<p>
+								I had a few more animations downloaded so I added a quick run function and animation tree when the player held shift while moving.
+							</p>
+
+							<div class="row">
+								<div class="column">
+									<img class="standard" src="img/animationRun.jpg" />
+								</div>
+								<div class="column">
+									<img class="standard" src="img/SprintTest.gif" />
+								</div>
+							</div>
+
+							<p>
+								With that the basic player was done and I could now move onto creating the core mechanics of the fighting game.
+							</p>
+
+							</section>
+							
+
+					</div>
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+
+	</body>
+</html>
